@@ -1,4 +1,5 @@
 import streamlit as st
+import certifi
 import pandas as pd
 import mysql.connector
 import plotly.express as px
@@ -875,6 +876,10 @@ def get_connection():
         user=st.secrets["mysql"]["user"],
         password=st.secrets["mysql"]["password"],
         database=st.secrets["mysql"]["database"],
+        ssl_ca=certifi.where(),
+        ssl_verify_cert=True,
+        ssl_verify_identity=True,
+        connection_timeout=20
     )
 
 
