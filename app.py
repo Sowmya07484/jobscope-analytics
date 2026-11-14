@@ -1018,22 +1018,29 @@ with refresh_col:
 
 page = st.session_state.page
 
+
 # ─────────────────────────────────────────────
 #  LOAD DATA
 # ─────────────────────────────────────────────
+
 try:
     with st.spinner("Connecting to database…"):
         df = load_data()
         company_count = load_company_count()
+
     db_ok = True
+
     if "last_refreshed" not in st.session_state:
         st.session_state.last_refreshed = datetime.now().strftime("%d %b %Y · %H:%M")
+
 except Exception as db_error:
     db_ok = False
     df = pd.DataFrame()
+    company_count = 0
 
 if db_ok and st.session_state.pop("refresh_notice", False):
     st.success("Latest records fetched from MySQL.")
+
 
 # ─────────────────────────────────────────────
 #  HERO SECTION
