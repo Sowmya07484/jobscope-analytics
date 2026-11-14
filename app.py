@@ -744,6 +744,13 @@ html, body, [class*="css"] { color: #111827 !important; }
 .stButton > button:hover { color: #0f766e !important; background: #f0fdfa !important; border-color: #99f6e4 !important; transform: translateY(-1px) !important; }
 .stButton > button[kind="primary"] { background: #0f766e !important; color: #fff !important; border-color: #0f766e !important; }
 .stButton > button[kind="primary"]:hover { background: #115e59 !important; border-color: #115e59 !important; }
+.stRadio > label { display: none !important; }
+.stRadio div[role="radiogroup"] { display: flex !important; flex-wrap: wrap !important; gap: 6px !important; align-items: center !important; }
+.stRadio div[role="radiogroup"] label { margin: 0 !important; padding: 0 !important; }
+.stRadio div[role="radiogroup"] label > div:first-child { display: none !important; }
+.stRadio div[role="radiogroup"] label > div:last-child { border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; color: #334155; padding: 9px 12px; min-height: 40px; display: flex; align-items: center; }
+.stRadio div[role="radiogroup"] label:has(input:checked) > div:last-child { background: #0f766e; color: #fff; border-color: #0f766e; }
+.stRadio div[role="radiogroup"] label p { margin: 0 !important; font-size: 13px !important; font-weight: 650 !important; }
 .stDownloadButton > button { background: #0f766e !important; color: #fff !important; border: 1px solid #0f766e !important; }
 .stDownloadButton > button:hover { background: #115e59 !important; }
 button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3px solid rgba(13,148,136,.35) !important; outline-offset: 2px !important; }
