@@ -1027,6 +1027,7 @@ page = st.session_state.page
 # ─────────────────────────────────────────────
 #  LOAD DATA
 # ─────────────────────────────────────────────
+db_error_message = None
 
 try:
     with st.spinner("Connecting to database…"):
@@ -1036,17 +1037,22 @@ try:
     db_ok = True
 
     if "last_refreshed" not in st.session_state:
-        st.session_state.last_refreshed = datetime.now().strftime("%d %b %Y · %H:%M")
+        st.session_state.last_refreshed = datetime.now().strftime(
+            "%d %b %Y · %H:%M"
+        )
 
-except Exception as db_error:
+except Exception as e:
     db_ok = False
+    db_error_message = str(e)
     df = pd.DataFrame()
     company_count = 0
 
 if db_ok and st.session_state.pop("refresh_notice", False):
     st.success("Latest records fetched from MySQL.")
 
-
+if not db_ok:
+    st.error("Database connection or query error:")
+    st.code(db_error_message)
 # ─────────────────────────────────────────────
 #  HERO SECTION
 # ─────────────────────────────────────────────
